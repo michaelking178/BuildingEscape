@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "WorldPosition.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
 UWorldPosition::UWorldPosition()
@@ -19,10 +19,25 @@ void UWorldPosition::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("This is a Warning!"));
-	UE_LOG(LogTemp, Error, TEXT("This is an Error!"));
-	UE_LOG(LogTemp, Display, TEXT("This is a Display!"));
+	FString ObjectName = GetOwner()->GetName();
+	FString ObjectPosition = GetOwner()->GetActorLocation().ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s is at location %s"), *ObjectName, *ObjectPosition);
+
+
+	//FString Log = TEXT("Hello");
+	//Log.Append(" World!");
+
+	// A pointer is ALWAYS secretly just an int that holds a memory address.
+	//FString* PtrLog = &Log;
 	
+	// To use the original object's functions you need to dereference the pointer.
+	//(*PtrLog).Append(" Wow!");
+	
+	// A cleaner way to dereference is to use the arrow function.
+	//PtrLog->Append(" The arrow really works!");
+
+	//// Using UE's log printing to print a pointer, you need to both dereference the pointer AND use the overloaded operator.
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), **PtrLog);
 }
 
 
