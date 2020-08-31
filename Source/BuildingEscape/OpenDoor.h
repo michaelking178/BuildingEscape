@@ -26,5 +26,7 @@ public:
 
 private:
 	FRotator StartingRotation;
+
+	UPROPERTY(editanywhere)
 	float TargetYaw = 90.0f;
 };
